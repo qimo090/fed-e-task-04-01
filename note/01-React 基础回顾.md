@@ -16,7 +16,7 @@ JSX 语法就是一种语法糖，让开发人员使用更加舒服的代码构�
 
 #### 2.1 在 JSX 中使用表达式
 
-```react
+```javascript
 const user = {
   firstName: 'Harper',
   lastName: 'Perez'
@@ -29,7 +29,7 @@ const element = <h1>Hello, {formatName(user)}!</h1>;
 
 JSX 本身其实也是一种表达式，将它赋值给变量，当作参数传入，作为返回值都可以。
 
-```react
+```javascript
 function getGreeting(user) {
   if (user) {
     return <h1>Hello, {formatName(user)}!</h1>;
@@ -42,13 +42,13 @@ function getGreeting(user) {
 
 如果属性值为字符串类型，需要加引号，属性名称推荐采用驼峰式命名法。
 
-```react
+```javascript
 const element = <div greeting="hello"></div>;
 ```
 
 如果属性值为JavaScript表达式，属性值外面加大括号。
 
-```react
+```javascript
 const element = <img src={user.avatarUrl} />;
 // 注意大括号外面不能加引号，JSX 会将引号当中的内容识别为字符串而不是表达式
 ```
@@ -57,7 +57,7 @@ const element = <img src={user.avatarUrl} />;
 
 如果 JSX 是单标记，必须闭合，否则报错。
 
-```react
+```javascript
 const element = <img src={user.avatarUrl} />
 const element = <input type="text"/>
 ```
@@ -66,13 +66,13 @@ const element = <input type="text"/>
 
 为 JSX 标记添加类名需要使用 className，而不是class。
 
-```react
+```javascript
 const element = <img src={user.avatarUrl} className="rounded"/>;
 ```
 
 #### 2.5  JSX 自动展开数组
 
-```react
+```javascript
 const ary = [<p>哈哈</p>, <p>呵呵</p>, <p>嘿嘿</p>];
 const element = (
 	<div>{ary}</div>
@@ -89,14 +89,14 @@ const element = (
 
 #### 2.6 三元运算
 
-```react
+```javascript
 { boolean ? <div>Hello React</div> : null }
 { boolean && <div>Hello React</div> }
 ```
 
 #### 2.7 循环
 
-```react
+```javascript
 const persons = [{
   id: 1,
   name: '张三',
@@ -112,7 +112,7 @@ const persons = [{
 }]
 ```
 
-```react
+```javascript
 <ul>
   { persons.map(person => <li key={person.id}> {person.name} {person.age} </li>) }
 </ul>
@@ -120,7 +120,7 @@ const persons = [{
 
 #### 2.8 事件
 
-```react
+```javascript
 {/* 第一个参数即是事件对象 不需传递 */}
 <button onClick={this.eventHandler}>按钮</button>
 {/* 需要传递事件对象 */}
@@ -129,7 +129,7 @@ const persons = [{
 <button onClick={this.eventHandler.bind(null, 'arg')}>按钮</button>
 ```
 
-```react
+```javascript
 constructor () {
   this.eventHandler = this.eventHandler.bind(this)
 }
@@ -141,7 +141,7 @@ eventHandler () {}
 
 ##### 2.9.1 行内样式
 
-```react
+```javascript
 class App extends Component {
   render() {
     const style = {width: 200, height: 200, backgroundColor: 'red'};
@@ -152,7 +152,7 @@ class App extends Component {
 
 ##### 2.9.2 外链样式
 
-```react
+```javascript
 // Button.js
 import styles from './Button.module.css';
 class Button extends Component {
@@ -164,7 +164,7 @@ class Button extends Component {
 
 ##### 2.9.3 全局样式
 
-```react
+```javascript
 import './styles.css'
 ```
 
@@ -172,7 +172,7 @@ import './styles.css'
 
 ##### 2.10.1 createRef
 
-```react
+```javascript
 class Input extends Component {
   constructor() {
     super()
@@ -191,7 +191,7 @@ class Input extends Component {
 
 ##### 2.10.2 函数参数
 
-```react
+```javascript
 class Input extends Component {
   render() {
     return (
@@ -208,7 +208,7 @@ class Input extends Component {
 
 不推荐使用，在严格模式下报错。
 
-```react
+```javascript
 class Input extends Component {
   render() {
     return (
@@ -227,7 +227,7 @@ class Input extends Component {
 
 input 文本框以及让文本框获取焦点的方法定义在 Input 组件中，在 App 组件中引入 Input 组件，按钮定义在 App 组件中。
 
-```react
+```javascript
 // Input.js
 class Input extends Component {
   constructor() {
@@ -248,7 +248,7 @@ class Input extends Component {
 }
 ```
 
-```react
+```javascript
 // App.js
 class App extends Component {
   constructor() {
@@ -279,7 +279,7 @@ React 是基于组件的方式进行用户界面开发的. 组件可以理解为
 
 ##### 3.2.1 创建类组件
 
-```react
+```javascript
 import React, { Component } from 'react';
 class App extends Component {
     render () {
@@ -290,7 +290,7 @@ class App extends Component {
 
 ##### 3.2.2 创建函数组件
 
-```react
+```javascript
 const Person = () => {
      return <div>Hello, 我是函数型组件</div>;
 }
@@ -307,12 +307,12 @@ const Person = () => {
 
 在调用组件时可以向组件内部传递数据，在组件中可以通过 props 对象获取外部传递进来的数据。
 
-```react
+```javascript
 <Person name="乔治" age="20"/>
 <Person name="玛丽" age="10"/>
 ```
 
-```react
+```javascript
 // 类组件
 class Person extends Component {
   render() {
@@ -326,7 +326,7 @@ class Person extends Component {
 }
 ```
 
-```react
+```javascript
 // 函数组件
 const Person = props => {
   return (
@@ -345,13 +345,13 @@ const Person = props => {
 
 ##### 3.3.2 设置 props 默认值
 
-```react
+```javascript
 class App extends Component {
     static defaultProps = {}
 }
 ```
 
-```react
+```javascript
 function ThemedButton(props) {
 }
 ThemedButton.defaultProps = {
@@ -364,11 +364,11 @@ ThemedButton.defaultProps = {
 
 通过 props.children 属性可以获取到在调用组件时填充到组件标签内部的内容。
 
-```react
+```javascript
 <Person>组件内部的内容</Person>
 ```
 
-```react
+```javascript
 const Person = (props) => {
     return (
     	<div>{props.children}</div>
@@ -398,7 +398,7 @@ const Person = (props) => {
 
 组件内部的状态数据被存储在组件类中的 state 属性中，state 属性值为对象类型，属性名称固定不可更改。
 
-```react
+```javascript
 class App extends Component {
   constructor () {
     super()
@@ -421,7 +421,7 @@ class App extends Component {
 
 state 状态对象中的数据不可直接更改，如果直接更改 DOM 不会被更新，要更改 state 状态数据需要使用 setState方法。
 
-```react
+```javascript
 class App extends Component {
   constructor () {
     this.state = {
@@ -455,7 +455,7 @@ class App extends Component {
 
 要实现双向数据绑定需要用到表单元素和 state 状态对象。
 
-```react
+```javascript
 class App extends Component {
   constructor () {
     this.state = {
@@ -477,7 +477,7 @@ class App extends Component {
 }
 ```
 
-```react
+```javascript
 const Person = props => {
 	return <input type="text" value={props.name} onChange={props.changed}/>;
 }
@@ -491,25 +491,25 @@ const Person = props => {
 
 在组件完成更新之前需要做某种逻辑或者计算，就需要用到快照
 
-```react
+```javascript
 componentDidUpdate(prevProps, prevState, snapshot) {}
 ```
 
 getSnapshotBeforeUpdate 方法会在组件完成更新之前执行，用于执行某种逻辑或计算，返回值可以在 componentDidUpdate 方法中的第三个参数中获取，就是说在组件更新之后可以拿到这个值再去做其他事情。
 
-```react
+```javascript
 getSnapshotBeforeUpdate(prevProps, prevState) {
   return 'snapshot'
 }
 ```
 
-#### 3.6 Context 
+#### 3.6 Context
 
 通过 Context 可以跨层级传递数据
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjkoap9jrsj31cb0o443e.jpg" width="70%"/>
 
-```react
+```javascript
 // userContext.js
 import React from "react"
 
@@ -520,7 +520,7 @@ const UserConsumer = userContext.Consumer
 export { UserProvider, UserConsumer }
 ```
 
-```react
+```javascript
 // App.js
 import { UserProvider } from "./userContext"
 class App extends Component {
@@ -534,7 +534,7 @@ class App extends Component {
 }
 ```
 
-```react
+```javascript
 // C.js
 import { UserConsumer } from "./userContext"
 
@@ -555,12 +555,12 @@ export class C extends Component {
 
 context 的另一种用法
 
-```react
+```javascript
 // userContext.js
 export default userContext
 ```
 
-```react
+```javascript
 // C.js
 import userContext from "./userContext"
 
@@ -582,13 +582,13 @@ export class C extends Component {
 
 表单控件中的值由组件的 state 对象来管理，state对象中存储的值和表单控件中的值时同步状态的
 
-```react
+```javascript
 class App extends Component {
   constructor () {
     this.state = { username: "" }
     this.nameChanged = this.nameChanged.bind(this)
   }
-  
+
   nameChanged (e) {
     this.setState({username: e.target.value})
   }
@@ -607,7 +607,7 @@ class App extends Component {
 
 表单元素的值由 DOM 元素本身管理。
 
-```react
+```javascript
 class App extends Component {
   constructor () {
     this.onSubmit = this.onSubmit.bind(this)
@@ -632,7 +632,7 @@ url地址与组件之间的对应关系，访问不同的url地址显示不同�
 
 #### 5.1.1 路由基本使用
 
-```react
+```javascript
 // App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -660,7 +660,7 @@ function App() {
 
 #### 5.1.2 路由嵌套
 
-```react
+```javascript
 function News(props) {
   return (
     <div>
@@ -670,8 +670,8 @@ function News(props) {
       </div>
       <div>
         <Route path={`${props.match.path}/company`} component={CompanyNews} />
-        <Route path={`${props.match.path}/industry`} component={IndustryNews}/>  
-      </div>	
+        <Route path={`${props.match.path}/industry`} component={IndustryNews}/>
+      </div>
     </div>
   );
 }
@@ -686,7 +686,7 @@ function IndustryNews() {
 
 #### 5.1.3 路由传参
 
-```react
+```javascript
 import url from 'url';
 class News extends Component {
   constructor(props) {
@@ -701,7 +701,7 @@ class News extends Component {
       }]
     }
   }
-    
+
   render() {
     return (
       <div>
@@ -733,7 +733,7 @@ class Detail extends Component {
 
 #### 5.1.4 路由重定向
 
-```react
+```javascript
 import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
