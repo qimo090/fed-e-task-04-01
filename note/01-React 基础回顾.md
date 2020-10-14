@@ -19,12 +19,12 @@ JSX 语法就是一种语法糖，让开发人员使用更加舒服的代码构�
 ```javascript
 const user = {
   firstName: 'Harper',
-  lastName: 'Perez'
+  lastName: 'Perez',
 }
 function formatName(user) {
-  return user.firstName + ' ' + user.lastName;
+  return user.firstName + ' ' + user.lastName
 }
-const element = <h1>Hello, {formatName(user)}!</h1>;
+const element = <h1>Hello, {formatName(user)}!</h1>
 ```
 
 JSX 本身其实也是一种表达式，将它赋值给变量，当作参数传入，作为返回值都可以。
@@ -32,9 +32,9 @@ JSX 本身其实也是一种表达式，将它赋值给变量，当作参数传�
 ```javascript
 function getGreeting(user) {
   if (user) {
-    return <h1>Hello, {formatName(user)}!</h1>;
+    return <h1>Hello, {formatName(user)}!</h1>
   }
-  return <h1>Hello, Stranger.</h1>;
+  return <h1>Hello, Stranger.</h1>
 }
 ```
 
@@ -43,13 +43,13 @@ function getGreeting(user) {
 如果属性值为字符串类型，需要加引号，属性名称推荐采用驼峰式命名法。
 
 ```javascript
-const element = <div greeting="hello"></div>;
+const element = <div greeting="hello"></div>
 ```
 
-如果属性值为JavaScript表达式，属性值外面加大括号。
+如果属性值为 JavaScript 表达式，属性值外面加大括号。
 
 ```javascript
-const element = <img src={user.avatarUrl} />;
+const element = <img src={user.avatarUrl} />
 // 注意大括号外面不能加引号，JSX 会将引号当中的内容识别为字符串而不是表达式
 ```
 
@@ -59,24 +59,22 @@ const element = <img src={user.avatarUrl} />;
 
 ```javascript
 const element = <img src={user.avatarUrl} />
-const element = <input type="text"/>
+const element = <input type="text" />
 ```
 
 #### 2.4 className
 
-为 JSX 标记添加类名需要使用 className，而不是class。
+为 JSX 标记添加类名需要使用 className，而不是 class。
 
 ```javascript
-const element = <img src={user.avatarUrl} className="rounded"/>;
+const element = <img src={user.avatarUrl} className="rounded" />
 ```
 
-#### 2.5  JSX 自动展开数组
+#### 2.5 JSX 自动展开数组
 
 ```javascript
-const ary = [<p>哈哈</p>, <p>呵呵</p>, <p>嘿嘿</p>];
-const element = (
-	<div>{ary}</div>
-);
+const ary = [<p>哈哈</p>, <p>呵呵</p>, <p>嘿嘿</p>]
+const element = <div>{ary}</div>
 // 解析后
 /*
 	<div>
@@ -90,43 +88,62 @@ const element = (
 #### 2.6 三元运算
 
 ```javascript
-{ boolean ? <div>Hello React</div> : null }
-{ boolean && <div>Hello React</div> }
+{
+  boolean ? <div>Hello React</div> : null
+}
+{
+  boolean && <div>Hello React</div>
+}
 ```
 
 #### 2.7 循环
 
 ```javascript
-const persons = [{
-  id: 1,
-  name: '张三',
-  age: 20
-}, {
-  id: 2,
-  name: '李四',
-  age: 15
-}, {
-  id: 3,
-  name: '王五',
-  age: 22
-}]
+const persons = [
+  {
+    id: 1,
+    name: '张三',
+    age: 20,
+  },
+  {
+    id: 2,
+    name: '李四',
+    age: 15,
+  },
+  {
+    id: 3,
+    name: '王五',
+    age: 22,
+  },
+]
 ```
 
 ```javascript
 <ul>
-  { persons.map(person => <li key={person.id}> {person.name} {person.age} </li>) }
+  {persons.map(person => (
+    <li key={person.id}>
+      {' '}
+      {person.name} {person.age}{' '}
+    </li>
+  ))}
 </ul>
 ```
 
 #### 2.8 事件
 
 ```javascript
-{/* 第一个参数即是事件对象 不需传递 */}
-<button onClick={this.eventHandler}>按钮</button>
-{/* 需要传递事件对象 */}
-<button onClick={e=>this.eventHandler('arg',e)}>按钮</button>
-{/* 最后一个参数即是事件对象 不需传递 */}
-<button onClick={this.eventHandler.bind(null, 'arg')}>按钮</button>
+{
+  /* 第一个参数即是事件对象 不需传递 */
+}
+;<button onClick={this.eventHandler}>按钮</button>
+{
+  /* 需要传递事件对象 */
+}
+;<button onClick={e => this.eventHandler('arg', e)}>按钮</button>
+{
+  /* 最后一个参数即是事件对象 不需传递 */
+}
+;<button onClick={this.eventHandler.bind(null, 'arg')}>按钮</button>
 ```
 
 ```javascript
@@ -144,7 +161,7 @@ eventHandler () {}
 ```javascript
 class App extends Component {
   render() {
-    const style = {width: 200, height: 200, backgroundColor: 'red'};
+    const style = { width: 200, height: 200, backgroundColor: 'red' }
     return <div style={style}></div>
   }
 }
@@ -154,10 +171,10 @@ class App extends Component {
 
 ```javascript
 // Button.js
-import styles from './Button.module.css';
+import styles from './Button.module.css'
 class Button extends Component {
   render() {
-    return <button className={styles.error}>Error Button</button>;
+    return <button className={styles.error}>Error Button</button>
   }
 }
 ```
@@ -182,7 +199,10 @@ class Input extends Component {
     return (
       <div>
         <input type="text" ref={this.inputRef} />
-        <button onClick={() => console.log(this.inputRef.current)}> button </button>
+        <button onClick={() => console.log(this.inputRef.current)}>
+          {' '}
+          button{' '}
+        </button>
       </div>
     )
   }
@@ -280,11 +300,11 @@ React 是基于组件的方式进行用户界面开发的. 组件可以理解为
 ##### 3.2.1 创建类组件
 
 ```javascript
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 class App extends Component {
-    render () {
-        return <div>Hello, 我是类组件</div>
-    }
+  render() {
+    return <div>Hello, 我是类组件</div>
+  }
 }
 ```
 
@@ -292,14 +312,14 @@ class App extends Component {
 
 ```javascript
 const Person = () => {
-     return <div>Hello, 我是函数型组件</div>;
+  return <div>Hello, 我是函数型组件</div>
 }
 ```
 
 **注意事项**
 
 1. 组件名称首字母必须大写，用以区分组件和普通标签。
-2. jsx语法外层必须有一个根元素
+2. jsx 语法外层必须有一个根元素
 
 #### 3.3 组件 props
 
@@ -321,7 +341,7 @@ class Person extends Component {
         <h3>姓名：{this.props.name}</h3>
         <h4>年龄：{this.props.age}</h4>
       </div>
-    );
+    )
   }
 }
 ```
@@ -334,30 +354,29 @@ const Person = props => {
       <h3>姓名：{props.name}</h3>
       <h4>年龄：{props.age}</h4>
     </div>
-  );
+  )
 }
 ```
 
 **注意：**
 
 1. props 对象中存储的数据是只读的，不能在组件内部被修改。
-2. 当 props 数据源中的数据被修改后，组件中的接收到的 props 数据会被同步更新。( 数据驱动DOM )
+2. 当 props 数据源中的数据被修改后，组件中的接收到的 props 数据会被同步更新。( 数据驱动 DOM )
 
 ##### 3.3.2 设置 props 默认值
 
 ```javascript
 class App extends Component {
-    static defaultProps = {}
+  static defaultProps = {}
 }
 ```
 
 ```javascript
-function ThemedButton(props) {
-}
+function ThemedButton(props) {}
 ThemedButton.defaultProps = {
-  theme: "secondary",
-  label: "Button Text"
-};
+  theme: 'secondary',
+  label: 'Button Text',
+}
 ```
 
 ##### 3.3.3 组件 children
@@ -369,22 +388,20 @@ ThemedButton.defaultProps = {
 ```
 
 ```javascript
-const Person = (props) => {
-    return (
-    	<div>{props.children}</div>
-    );
+const Person = props => {
+  return <div>{props.children}</div>
 }
 ```
 
 ##### 3.3.4 单向数据流
 
-1.  在React中, 关于数据流动有一条原则, 就是单向数据流动, 自顶向下, 从父组件到子组件.
+1.  在 React 中, 关于数据流动有一条原则, 就是单向数据流动, 自顶向下, 从父组件到子组件.
 
 2.  单向数据流特性要求我们共享数据要放置在上层组件中.
 
 3.  子组件通过调用父组件传递过来的方法更改数据.
 
-4.  当数据发生更改时, React会重新渲染组件树.
+4.  当数据发生更改时, React 会重新渲染组件树.
 
 5.  单向数据流使组件之间的数据流动变得可预测. 使得定位程序错误变得简单.
 
@@ -400,41 +417,41 @@ const Person = (props) => {
 
 ```javascript
 class App extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       person: { name: '张三', age: 20 },
     }
   }
-  render () {
+  render() {
     return (
       <div>
         {this.state.person.name}
         {this.state.person.age}
       </div>
-    );
+    )
   }
 }
 ```
 
 ##### 3.4.2 更改组件状态
 
-state 状态对象中的数据不可直接更改，如果直接更改 DOM 不会被更新，要更改 state 状态数据需要使用 setState方法。
+state 状态对象中的数据不可直接更改，如果直接更改 DOM 不会被更新，要更改 state 状态数据需要使用 setState 方法。
 
 ```javascript
 class App extends Component {
-  constructor () {
+  constructor() {
     this.state = {
       person: { name: '张三', age: 20 },
     }
     this.changePerson = this.changePerson.bind(this)
   }
-	changePerson () {
+  changePerson() {
     this.setState({
       person: {
         name: '李四',
-        age: 15
-      }
+        age: 15,
+      },
     })
   }
   render() {
@@ -444,7 +461,7 @@ class App extends Component {
         {this.state.person.age}
         <button onClick={this.changePerson}>按钮</button>
       </div>
-    );
+    )
   }
 }
 ```
@@ -457,20 +474,20 @@ class App extends Component {
 
 ```javascript
 class App extends Component {
-  constructor () {
+  constructor() {
     this.state = {
-      name: "张三"
+      name: '张三',
     }
     this.nameChanged = this.nameChanged.bind(this)
   }
-  nameChanged (event) {
-    this.setState({name: event.target.value});
+  nameChanged(event) {
+    this.setState({ name: event.target.value })
   }
   render() {
     return (
       <div>
         <div>{this.state.name}</div>
-        <Person name={this.state.name} changed={this.nameChanged}/>
+        <Person name={this.state.name} changed={this.nameChanged} />
       </div>
     )
   }
@@ -479,15 +496,13 @@ class App extends Component {
 
 ```javascript
 const Person = props => {
-	return <input type="text" value={props.name} onChange={props.changed}/>;
+  return <input type="text" value={props.name} onChange={props.changed} />
 }
 ```
 
 #### 3.5 类组件生命周期函数
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjkoal4g04j31ai0phju6.jpg"/>
-
-
 
 在组件完成更新之前需要做某种逻辑或者计算，就需要用到快照
 
@@ -511,9 +526,9 @@ getSnapshotBeforeUpdate(prevProps, prevState) {
 
 ```javascript
 // userContext.js
-import React from "react"
+import React from 'react'
 
-const userContext = React.createContext("default value")
+const userContext = React.createContext('default value')
 const UserProvider = userContext.Provider
 const UserConsumer = userContext.Consumer
 
@@ -522,7 +537,7 @@ export { UserProvider, UserConsumer }
 
 ```javascript
 // App.js
-import { UserProvider } from "./userContext"
+import { UserProvider } from './userContext'
 class App extends Component {
   render() {
     return (
@@ -536,7 +551,7 @@ class App extends Component {
 
 ```javascript
 // C.js
-import { UserConsumer } from "./userContext"
+import { UserConsumer } from './userContext'
 
 export class C extends Component {
   render() {
@@ -562,16 +577,12 @@ export default userContext
 
 ```javascript
 // C.js
-import userContext from "./userContext"
+import userContext from './userContext'
 
 export class C extends Component {
   static contextType = userContext
   render() {
-    return (
-      <div>
-        {this.context}
-      </div>
-    )
+    return <div>{this.context}</div>
   }
 }
 ```
@@ -580,23 +591,27 @@ export class C extends Component {
 
 #### 4.1 受控表单
 
-表单控件中的值由组件的 state 对象来管理，state对象中存储的值和表单控件中的值时同步状态的
+表单控件中的值由组件的 state 对象来管理，state 对象中存储的值和表单控件中的值时同步状态的
 
 ```javascript
 class App extends Component {
-  constructor () {
-    this.state = { username: "" }
+  constructor() {
+    this.state = { username: '' }
     this.nameChanged = this.nameChanged.bind(this)
   }
 
-  nameChanged (e) {
-    this.setState({username: e.target.value})
+  nameChanged(e) {
+    this.setState({ username: e.target.value })
   }
   render() {
     return (
       <form>
         <p>{this.state.username}</p>
-        <input type="text" value={this.state.username} onChange={this.nameChanged}/>
+        <input
+          type="text"
+          value={this.state.username}
+          onChange={this.nameChanged}
+        />
       </form>
     )
   }
@@ -626,7 +641,7 @@ class App extends Component {
 
 ### 5. 路由
 
-url地址与组件之间的对应关系，访问不同的url地址显示不同的组件。
+url 地址与组件之间的对应关系，访问不同的 url 地址显示不同的组件。
 
 下载：`npm install react-router-dom`
 
@@ -634,13 +649,13 @@ url地址与组件之间的对应关系，访问不同的url地址显示不同�
 
 ```javascript
 // App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 function Index() {
-	return <div>首页</div>;
+  return <div>首页</div>
 }
 function News() {
-	return <div>新闻</div>;
+  return <div>新闻</div>
 }
 function App() {
   return (
@@ -650,11 +665,11 @@ function App() {
         <Link to="/news">新闻</Link>
       </div>
       <div>
-        <Route path="/index" component={Index}/>
-        <Route path="/news" component={News}/>
+        <Route path="/index" component={Index} />
+        <Route path="/news" component={News} />
       </div>
     </Router>
-  );
+  )
 }
 ```
 
@@ -670,17 +685,17 @@ function News(props) {
       </div>
       <div>
         <Route path={`${props.match.path}/company`} component={CompanyNews} />
-        <Route path={`${props.match.path}/industry`} component={IndustryNews}/>
+        <Route path={`${props.match.path}/industry`} component={IndustryNews} />
       </div>
     </div>
-  );
+  )
 }
 
 function CompanyNews() {
-	return <div>公司新闻</div>
+  return <div>公司新闻</div>
 }
 function IndustryNews() {
-	return <div>行业新闻</div>
+  return <div>行业新闻</div>
 }
 ```
 
@@ -734,12 +749,12 @@ class Detail extends Component {
 #### 5.1.4 路由重定向
 
 ```javascript
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   render() {
     if (this.state.isLogin) {
-      return <Redirect to="/"/>
+      return <Redirect to="/" />
     }
   }
 }
